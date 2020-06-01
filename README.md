@@ -23,16 +23,16 @@ MongoDB
 ### Installing
 
 1) python3:
-For linux you can install from [Here] (https://docs.python-guide.org/starting/install3/linux/)
-For mac you can install from [Here] (https://docs.python-guide.org/starting/install3/osx/)
+For linux you can install from [Here](https://docs.python-guide.org/starting/install3/linux/)
+For mac you can install from [Here](https://docs.python-guide.org/starting/install3/osx/)
 
 2) pip3env:
-For Ubuntu you can install from [Here] (https://linuxize.com/post/how-to-install-pip-on-ubuntu-18.04/)
-For mac you can install from [Here] (https://evansdianga.com/install-pip-osx/)
+For Ubuntu you can install from [Here](https://linuxize.com/post/how-to-install-pip-on-ubuntu-18.04/)
+For mac you can install from [Here](https://evansdianga.com/install-pip-osx/)
 
 3) MongoDB:
-For linux you can install from [Here] (https://docs.mongodb.com/manual/administration/install-on-linux/)
-For mac you can install from [Here] (https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
+For linux you can install from [Here](https://docs.mongodb.com/manual/administration/install-on-linux/)
+For mac you can install from [Here](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
 
 ## Running the tests
 
@@ -82,7 +82,7 @@ Response=> If succeed you will receive token as follows otherwise you will get a
 }
 ```
 For Secured API's follow the below instructions:
-As secure API's  need token for processing the functionality of the API, copy the token when you recieve after logged in and paste it into Postman Authentication Header. You can watch video [Here] (https://www.youtube.com/watch?v=LKveAwao9HA)
+As secure API's  need token for processing the functionality of the API, copy the token when you recieve after logged in and paste it into Postman Authentication Header. You can watch video [Here](https://www.youtube.com/watch?v=LKveAwao9HA)
 
 ```
 [POST METHOD]

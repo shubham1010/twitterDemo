@@ -27,7 +27,7 @@ class Like(Resource):
       status.save()
       
       id = status.id
-      return {'message':'Your liked this status', 'id': str(id)}, 200
+      return {'message':'You liked this status', 'id': str(id)}, 200
     except (FieldDoesNotExist, ValidationError):
       raise SchemaValidationError
     except DoesNotExist:

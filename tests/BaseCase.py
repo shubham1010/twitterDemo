@@ -14,4 +14,4 @@ class BaseCase(unittest.TestCase):
   def tearDown(self):
     # Delete Database collections after the test is complete
     for collection in self.db.list_collection_names():
-        self.db.drop_collection(collection)
+      self.db.drop_collection(collection)

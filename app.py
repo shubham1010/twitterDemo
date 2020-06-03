@@ -15,7 +15,7 @@ bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
 
 app.config['MONGODB_SETTINGS'] = {
-    'host': 'mongodb://localhost/twitter'
+    'host': 'mongodb://localhost/'+app.config['DB_NAME']
 }
 
 initialize_db(app)

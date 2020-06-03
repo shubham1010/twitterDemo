@@ -211,5 +211,5 @@ If you succeed for an API we will get expected result otherwise you will get an 
 * [MongoDB Compass](https://docs.mongodb.com/compass/master/install/) - The GUI for MongoDB
 
 ## Versioning
-I'm calling it as version 1.0
+Version 1.1
 

@@ -22,6 +22,9 @@ class EmailAlreadyExistsError(Exception):
 class UnauthorizedError(Exception):
   pass
 
+class AlreadyLikedError(Exception):
+  pass
+
 errors = {
   "InternalServerError": {
     "message": "Something went wrong",
@@ -57,5 +60,15 @@ errors = {
   "UnauthorizedError": {
     "message": "Invalid username or password",
     "status": 401
+  },
+
+   "AlreadyLikedError": {
+    "message": "You have already liked this status",
+    "status": 406
+  },
+    "LikeNotError": {
+    "message": "Liked id is not found in the records",
+    "status": 400
   }
+
 }

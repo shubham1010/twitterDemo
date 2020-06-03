@@ -1,17 +1,18 @@
+from datetime import datetime
 from .db import db
 from flask_bcrypt import generate_password_hash, check_password_hash
 
 
 class Likes(db.Document):
   statusid = db.ReferenceField('Status')
-  added_by = db.ReferenceField('User')
-  time = db.StringField(required=True)
+  added_by = db.ReferenceField('User', unique_with='statusid')
+  liked_at = db.DateTimeField(required=True)
 
 class Comments(db.Document):
   comment = db.StringField(required=True)
   statusid = db.ReferenceField('Status')
   added_by = db.ReferenceField('User')
-  time = db.StringField(required=True)
+  commented_at = db.DateTimeField(required=True)
 
 class Status(db.Document):
   image_url = db.StringField()
@@ -19,7 +20,7 @@ class Status(db.Document):
   comments = db.ListField(db.ReferenceField('Comments', reverse_delete_rule=db.PULL))
   likes = db.ListField(db.ReferenceField('Likes', reverse_delete_rule=db.PULL))
   added_by = db.ReferenceField('User')
-  time = db.StringField(required=True)
+  uploaded_at = db.DateTimeField(required=True)
 
 class User(db.Document):
   email = db.EmailField(required=True, unique=True)
@@ -28,7 +29,8 @@ class User(db.Document):
   status = db.ListField(db.ReferenceField('Status', reverse_delete_rule=db.PULL))
   following = db.ListField(db.ReferenceField('User', reverse_delete_rule=db.PULL, unique=True))
   followers = db.ListField(db.ReferenceField('User', reverse_delete_rule=db.PULL, unique=True))
-  
+  created_at = db.DateTimeField(required=True)
+  last_logged_in = db.DateTimeField(required=True)
 
   def hash_password(self):
     self.password = generate_password_hash(self.password).decode('utf8')

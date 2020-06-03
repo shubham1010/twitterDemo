@@ -14,10 +14,12 @@ class Follow(Resource):
       userFollowing = User.objects.get(id=user_following_id)
       userFollower = User.objects.get(id=id)
 
-      userFollowing.update(push__following = userFollower)
+#      userFollowing.update(push__following = userFollower)
+      userFollowing.update(add_to_set__following = userFollower)
       userFollowing.save()
 
-      userFollower.update(push__followers = userFollowing)
+#      userFollower.update(push__followers = userFollowing)
+      userFollower.update(add_to_set__followers = userFollowing)
       userFollower.save()
 
       userFollowerName = str(userFollower['name'])

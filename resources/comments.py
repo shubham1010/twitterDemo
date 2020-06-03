@@ -6,7 +6,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask_restful import Resource
 from mongoengine.errors import FieldDoesNotExist, NotUniqueError, DoesNotExist, ValidationError, InvalidQueryError
 from resources.errors import SchemaValidationError, InternalServerError, \
-StatusNotExistsError, DeletingCommentError
+StatusNotExistsError, DeletingCommentError, UnauthorizedError
 
 
 class AddComment(Resource):
@@ -17,7 +17,7 @@ class AddComment(Resource):
       body = request.get_json()
       user = User.objects.get(id=user_id)
       status = Status.objects.get(id=id)
-      comment = Comments(**body, added_by=user, statusid=id, time=str(datetime.now()))
+      comment = Comments(**body, added_by=user, statusid=id, commented_at=datetime.now())
       comment.save()
       status.update(push__comments=comment)
       status.save()
@@ -41,5 +41,7 @@ class DeleteComment(Resource):
       return {'message':'Your comment is successfully deleted'}, 200
     except DoesNotExist:
       raise DeletingCommentError
+    except UnauthorizedError:
+      raise UnauthorizedError
     except Exception:
       raise InternalServerError

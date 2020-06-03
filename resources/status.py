@@ -5,7 +5,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask_restful import Resource
 from mongoengine.errors import FieldDoesNotExist, NotUniqueError, DoesNotExist, ValidationError, InvalidQueryError
 from resources.errors import SchemaValidationError, InternalServerError, \
-DeletingStatusError, UserNotExistsError
+DeletingStatusError, UserNotExistsError, UnauthorizedError
 
 
 class CreateStatus(Resource):
@@ -15,9 +15,9 @@ class CreateStatus(Resource):
       user_id = get_jwt_identity()
       body = request.get_json()
       user = User.objects.get(id=user_id)
-      status = Status(**body, added_by=user, time=str(datetime.now()))
+      status = Status(**body, added_by=user, uploaded_at=datetime.now())
       status.save()
-      user.update(push__status=status)
+      user.update(add_to_set__status=status)
       user.save()
       id = status.id
       return {'message':'Status is successfully uploaded', 'id': str(id)}, 200
@@ -54,5 +54,7 @@ class DeleteStatus(Resource):
       return {'message':'Your status is successfully deleted'}, 200
     except DoesNotExist:
       raise DeletingStatusError
+    except UnauthorizedError:
+      raise UnauthorizedError
     except Exception:
       raise InternalServerError
